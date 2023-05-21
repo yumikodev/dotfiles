@@ -35,7 +35,7 @@ sudo pacman -S wl-clipboard slurp grim zsh ranger neovim
 Paquetes indispensables para un correcto funcionamiento:
 
 ```bash
-yay -s waybar-hyprland rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo alacritty-git
+yay -S waybar-hyprland rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo alacritty-git
 ```
 
 ## Fuentes (Tipografías)

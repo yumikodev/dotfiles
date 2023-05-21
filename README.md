@@ -65,6 +65,14 @@ cd dotfiles
 cp -r .config/* ~/.config
 ```
 
+### Wallpaper
+
+Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos la configuración de Hyprland `~/.config/hypr/hyprland.conf`, vamos hacia la linea 24 y después del argumento `-i` colocamos la ubicación de nuestro wallpaper. Debería de quedar así:
+
+```conf
+exec-once = swaybg -o \* -i ~/<PATH_OF_IMAGE>.png -m fill
+```
+
 ## Terminal
 
 Para configurar la terminal (zsh), vamos a instalar [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH). Para el prompt instalamos [StarShip](https://starship.rs/guide/#%F0%9F%9A%80-installation) (revise la documentación) y nos aseguramos copiar el archivo `starship.toml` en `~/.config`.

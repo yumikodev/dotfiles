@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-# Current Theme
-dir="~/.config/waybar/scripts/power-menu/"
-theme='style'
+# Rofi theme
+rofi_theme=${HOME}/.config/rofi/powermenu.rasi
 
 # CMDs
 uptime="`uptime -p | sed -e 's/up //g'`"
@@ -10,10 +9,10 @@ host=`cat /etc/hostname`
 
 # Options
 shutdown=' Shutdown'
-reboot=' Reboot'
-lock=' Lock'
-suspend='  Suspend'
-logout='  Logout'
+reboot=' Reboot'
+lock=' Lock'
+suspend=' Suspend'
+logout=' Logout'
 yes='Si'
 no='No'
 
@@ -21,8 +20,8 @@ no='No'
 rofi_cmd() {
 	rofi -dmenu \
 		-p "$host" \
-		-mesg "Uptime: $uptime" \
-		-theme ${dir}/${theme}.rasi
+		-mesg "Tiempo activo: $uptime" \
+		-theme ${rofi_theme}
 }
 
 # Confirmation CMD
@@ -33,9 +32,8 @@ confirm_cmd() {
 		-theme-str 'element-text {horizontal-align: 0.5;}' \
 		-theme-str 'textbox {horizontal-align: 0.5;}' \
 		-dmenu \
-		-p 'Confirmation' \
 		-mesg '¿Estás seguro?' \
-		-theme ${dir}/${theme}.rasi
+		-theme ${rofi_theme}
 }
 
 # Ask for confirmation
@@ -62,6 +60,8 @@ run_cmd() {
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
       killall Hyprland
+		elif [[ $1 == '--lock' ]]; then
+			swaylock-fancy
 		fi
 	else
 		exit 0
@@ -72,24 +72,18 @@ run_cmd() {
 chosen="$(run_rofi)"
 case ${chosen} in
     $shutdown)
-		run_cmd --shutdown
+			run_cmd --shutdown
         ;;
     $reboot)
-		run_cmd --reboot
+			run_cmd --reboot
         ;;
     $lock)
-		if [[ -x '/usr/bin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		elif [[ -x '/usr/bin/Hyprland' ]]; then
-		  swaylock	
-		fi
+			run_cmd --lock
         ;;
     $suspend)
-		run_cmd --suspend
+			run_cmd --suspend
         ;;
     $logout)
-		run_cmd --logout
+			run_cmd --logout
         ;;
 esac

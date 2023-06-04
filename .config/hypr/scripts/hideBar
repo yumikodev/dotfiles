@@ -1,0 +1,19 @@
+function hide() {
+    killall waybar
+}
+
+function unhide() {
+    bash $HOME/.config/waybar/launch.sh
+}
+
+case $1 in
+    -h | --hide | hide)
+        hide
+        exit;;
+    -u | --unhide | unhide)
+        unhide
+        exit;;
+    *)
+        echo "Error: Invalid option"
+        exit;;
+esac

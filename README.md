@@ -29,13 +29,13 @@ yay -S hyprland-git
 Las siguientes dependencias son para las capturas de pantalla, terminal y otros:
 
 ```bash
-sudo pacman -S wl-clipboard slurp grim zsh ranger neovim
+sudo pacman -S wl-clipboard slurp grim zsh ranger neovim waybar
 ```
 
 Paquetes indispensables para un correcto funcionamiento:
 
 ```bash
-yay -S waybar-hyprland rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo alacritty-git
+yay -S rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo alacritty-git
 ```
 
 ## Fuentes (Tipografías)

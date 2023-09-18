@@ -1,13 +1,14 @@
 local colors = require("catppuccin.palettes").get_palette()
 require("catppuccin").setup({
 	flavour = "mocha",
+    transparent_background = true,
 	color_overrides = {
 		mocha = {
-			base = "#141521",
+            base = "#141521",
 		},
 	},
 	custom_highlights = {
-		Comment = { fg = colors.overlay1 },
+	    Comment = { fg = colors.overlay1 },
 		LineNr = { fg = colors.overlay1 },
 	},
 	integrations = {
@@ -55,12 +56,12 @@ end
 
 -- vim.api.nvim_create_autocmd("ColorScheme", {
 -- 	pattern = "*",
--- 	callback = function()
+--	callback = function()
 -- 		local hl_groups = {
 -- 			"Normal",
 -- 			"SignColumn",
 -- 			"NormalNC",
--- 			"TelescopeBorder",
+--			"TelescopeBorder",
 -- 			"NvimTreeNormal",
 -- 			"EndOfBuffer",
 -- 			"MsgArea",
@@ -68,9 +69,9 @@ end
 -- 		for _, name in ipairs(hl_groups) do
 -- 			vim.cmd(string.format("highlight %s ctermbg=none guibg=none", name))
 -- 		end
--- 	end,
+--    end,
 -- })
---
+
 -- vim.opt.fillchars = "eob: "
 
 -- setup must be called before loading

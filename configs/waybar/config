@@ -1,15 +1,15 @@
 {
-  "height": 30, // Waybar height (to be removed for auto height)
+  "height": 28, // Waybar height (to be removed for auto height)
   "layer": "top", // Waybar at top layer
-  "margin-top": 6,
-  "margin-left": 10,
-  "margin-bottom": 0,
-  "margin-right": 10,
-  "spacing": 5, // Gaps between modules (4px)
-  "modules-left": ["custom/launcher", "wlr/workspaces", "tray"],
-  "modules-center": ["custom/spotify"],
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-bottom": 5,
+  "margin-right": 0,
+  "spacing": 6, // Gaps between modules (6px)
+  "modules-left": ["custom/launcher", "hyprland/workspaces", "tray"],
+  "modules-center": ["mpris"],
   "modules-right": ["pulseaudio", "network", "clock", "custom/power-menu"],
-  "wlr/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "format-icons": {
@@ -30,8 +30,25 @@
   "hyprland/window": {
     "format": "{}"
   },
+  "mpris": {
+    "format": "{player_icon} {title}",
+	  "format-paused": "{player_icon} {status_icon} {title}",
+    "interval": 1,
+	  "player-icons": {
+		  "default": "",
+		  "mpv": "",
+      "spotify": "",
+      "brave": "",
+      "firefox": "",
+	  },
+	  "status-icons": {
+		  "paused": "",
+      "stopped": "",
+	  },
+    "max-length": 50,
+  },
   "tray": {
-    "spacing": 10
+    "spacing": 5
   },
   "clock": {
     "format": " {:%I:%M %p}",
@@ -56,7 +73,7 @@
     "format": "{icon} {percent}%",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
     "on-click": ""
-  },
+  }, 
   "network": {
     "format-wifi": "{icon}",
     "format-ethernet": "",
@@ -112,7 +129,6 @@
     "return-type": "json",
     "on-click": "xdg-open https://weather.com/en-IN/weather/today/l/a319796a4173829988d68c4e3a5f90c1b6832667ea7aaa201757a1c887ec667a"
   },
-
   "custom/spotify": {
     "exec": "python3 ~/.config/waybar/scripts/mediaplayer.py --player spotify",
     "format": "  {}",
@@ -123,10 +139,12 @@
   },
   "custom/power-menu": {
     "format": "",
-    "on-click": "bash ~/.config/hypr/scripts/powermenu.sh"
+    "on-click": "bash ~/.config/hypr/scripts/powermenu.sh",
+    "tooltip-format": "Power menu (Super + Super + P)"
   },
   "custom/launcher": {
     "format": "",
-    "on-click": "rofi -show drun"
+    "on-click": "rofi -show drun",
+    "tooltip-format": "Apps menu (Super + Space)"
   }
 }

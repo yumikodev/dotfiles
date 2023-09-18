@@ -166,4 +166,5 @@ lazy.setup({
 			require("plugins.configs.ui.scrollbar")
 		end,
 	},
+    { "elkowar/yuck.vim", lazy = false },
 })

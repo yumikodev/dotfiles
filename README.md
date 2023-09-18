@@ -62,16 +62,28 @@ Ahora, hay que copiar los archivos de configuración
 ```bash
 git clone -b nelly-dark https://github.com/Yumiko0828/dotfiles.git
 cd dotfiles
-cp -r .config/* ~/.config
+cp -r .config/* ~/configs
 ```
 
 ### Wallpaper
 
-Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos la configuración de Hyprland `~/.config/hypr/hyprland.conf`, vamos hacia la linea 24 y después del argumento `-i` colocamos la ubicación de nuestro wallpaper. Debería de quedar así:
+Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos el script de bash `~/.config/hypr/scripts/wallpaper.sh`, luego buscaremos el siguiente código:
 
-```conf
-exec-once = swaybg -o \* -i ~/<PATH_OF_IMAGE>.png -m fill
+```sh
+changeBg() {
+  if [ $HOUR -gt 18 ]; then
+    swaybg -o \* -i <PATH_TO_NIGHT_WALLPAPER> -m fill
+  else
+    swaybg -o \* -i <PATH_TO_DAY_WALLPAPER> -m fill
+  fi
+}
 ```
+
+De manera simple, si la hora es mayor a 18 (6 P.M.), se establecerá un wallpaper para la noche, caso contrario se establecerá otro para el día.
+
+> Debo aclarar que la otra función `setInterval` es para ejecutar la función cada cierto tiempo y cambiar el wallpaper dinámicamente, pero no funciona.
+>
+> Cualquier aporte con un PR es bienvenida.
 
 ## Terminal
 

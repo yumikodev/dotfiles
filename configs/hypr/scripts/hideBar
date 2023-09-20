@@ -1,5 +1,5 @@
 function hide() {
-    killall waybar
+    pkill -f "bash $HOME/.config/waybar/launch.sh"
 }
 
 function unhide() {

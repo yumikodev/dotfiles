@@ -29,7 +29,7 @@ yay -S hyprland-git
 Las siguientes dependencias son para las capturas de pantalla, terminal y otros:
 
 ```bash
-sudo pacman -S wl-clipboard slurp grim zsh ranger neovim waybar
+sudo pacman -S wl-clipboard slurp grim zsh ranger neovim waybar inotify-tools
 ```
 
 Paquetes indispensables para un correcto funcionamiento:

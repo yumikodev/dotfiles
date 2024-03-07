@@ -8,11 +8,11 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 host=`cat /etc/hostname`
 
 # Options
-shutdown=' Shutdown'
-reboot=' Reboot'
-lock=' Lock'
-suspend=' Suspend'
-logout=' Logout'
+shutdown=' Apagar'
+reboot=' Reiniciar'
+lock=' Bloquear'
+suspend=' Suspender'
+logout=' Cerrar sesión'
 yes='Si'
 no='No'
 
@@ -59,7 +59,7 @@ run_cmd() {
 			amixer set Master mute
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
-      killall Hyprland
+      hyprctl dispatch exit
 		elif [[ $1 == '--lock' ]]; then
 			swaylock-fancy
 		fi

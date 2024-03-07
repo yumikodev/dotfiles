@@ -71,18 +71,13 @@ cp -r configs/* ~/.config
 
 ### Wallpaper
 
-Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos el script de bash `~/.config/hypr/scripts/wallpaper.sh`, luego buscaremos el siguiente código:
+Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos el script de bash `~/.config/hypr/scripts/wallpaper.py`, luego buscaremos las siguientes lineas de códig:
 
-```sh
-changeBg() {
-    pkill swaybg
-    
-    if [ $HOUR -gt 18 ]; then
-        swaybg -o \* -i <PATH_TO_NIGHT_WALLPAPER> -m fill &
-    else
-        swaybg -o \* -i <PATH_TO_DAY_WALLPAPER> -m fill &
-    fi
-}
+```py
+  if hour < 18:
+    Popen(["swaybg", "-o", "*", "-i", f"{path}/<PATH-TO-DAY-WALLPAPER>", "-m", "fill"])
+  else:
+    Popen(["swaybg", "-o", "*", "-i", f"{path}/<PATH-TO-NIGHT-WALLPAPER>", "-m", "fill"])
 ```
 
 De manera simple, si la hora es mayor a 18 (6 P.M.), se establecerá un wallpaper para la noche, caso contrario se establecerá otro para el día.

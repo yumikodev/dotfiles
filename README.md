@@ -18,10 +18,10 @@ Antes de empezar a instalar las dependencias, hay que tener en cuenta que esta g
 
 ## Hyprland
 
-Primero, hay que instalar Hyprland utilizando los **AUR**, en este caso con **yay**.
+Primero, hay que instalar la versión estable de Hyprland.
 
 ```bash
-yay -S hyprland-git
+sudo pacman -S hyprland
 ```
 
 ## Dependencias
@@ -29,13 +29,13 @@ yay -S hyprland-git
 Las siguientes dependencias son para las capturas de pantalla, terminal y otros:
 
 ```bash
-sudo pacman -S wl-clipboard slurp grim zsh ranger neovim waybar inotify-tools
+sudo pacman -S wl-clipboard slurp grim zsh ranger neovim waybar inotify-tools alacritty
 ```
 
 Paquetes indispensables para un correcto funcionamiento:
 
 ```bash
-yay -S rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo alacritty-git
+yay -S rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo
 ```
 
 ## Fuentes (Tipografías)
@@ -48,6 +48,10 @@ yay -S rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo alacri
   ```
 
 Una vez descargadas las fuentes (comprimidas), descompimalas y coloquelas en `~/.fonts` o `~/.local/share/fonts`.
+
+> [!NOTE]
+> Si la carpeta no existe, creala con `mkdir <PATH>`.
+> Reemplace `<PATH>` por `~/.fonts` o `~/.local/share/fonts` (escoge uno).
 
 Luego ejecuta este comando para que su sistema reconozca las fuentes.
 
@@ -62,7 +66,7 @@ Ahora, hay que copiar los archivos de configuración
 ```bash
 git clone -b nelly-dark https://github.com/Yumiko0828/dotfiles.git
 cd dotfiles
-cp -r .config/* ~/configs
+cp -r configs/* ~/.config
 ```
 
 ### Wallpaper

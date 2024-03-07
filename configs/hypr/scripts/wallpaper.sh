@@ -1,32 +1,23 @@
 #!/bin/bash
 
 HOUR=$(date +%H)
-
-setInterval() {
-	local func=$1
-	local sleeptime=$2
-	local _start _end _delta _sleep
-	while true; do
-		_start=$(date +%s)
-		#echo "$_start: starting work"
-
-		# do work (unknown amount of time)
-		"$func"
-
-		_end=$(date +%s)
-		_delta=$((_end - _start))
-		_sleep=$((sleeptime - _delta))
-		#echo "$_end: finished doing work, took $_delta seconds, sleeping for $_sleep seconds"
-		sleep "$_sleep"
-	done
-}
+FILE_PATH=$0
+FILE_DIR=$(dirname "$(readlink -f "$0")")
 
 changeBg() {
-  if [ $HOUR -gt 18 ]; then
-    swaybg -o \* -i $HOME/Imágenes/wallpapers/Monterey_Abstract_night.jpg -m fill
-  else
-    swaybg -o \* -i $HOME/Imágenes/wallpapers/Monterey_Abstract_day.jpg -m fill
-  fi
+    pkill swaybg
+    
+    if [ $HOUR -gt 18 ]; then
+        swaybg -o \* -i $HOME/Imágenes/wallpapers/1144956.png -m fill &
+    else
+        swaybg -o \* -i $HOME/Imágenes/wallpapers/cropped-1920-1080-118303.jpg -m fill &
+    fi
 }
 
-setInterval changeBg 10
+intervalo=10
+
+while true; do
+    changeBg
+        
+    sleep $((intervalo * 60))
+done

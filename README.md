@@ -73,28 +73,31 @@ cp -r configs/* ~/.config
 
 Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos el script de bash `~/.config/hypr/scripts/wallpaper.sh`, luego buscaremos el siguiente código:
 
+> [!NOTE]
+> Para detectar los cambios se utiliza Nodemon, por ende deberá instalar [nodemom](https://www.npmjs.com/package/nodemon) globalmente (y obviamente [Node.js](https://github.com/nvm-sh/nvm)).
+
 ```sh
 changeBg() {
-  if [ $HOUR -gt 18 ]; then
-    swaybg -o \* -i <PATH_TO_NIGHT_WALLPAPER> -m fill
-  else
-    swaybg -o \* -i <PATH_TO_DAY_WALLPAPER> -m fill
-  fi
+    pkill swaybg
+    
+    if [ $HOUR -gt 18 ]; then
+        swaybg -o \* -i <PATH_TO_NIGHT_WALLPAPER> -m fill &
+    else
+        swaybg -o \* -i <PATH_TO_DAY_WALLPAPER> -m fill &
+    fi
 }
 ```
 
 De manera simple, si la hora es mayor a 18 (6 P.M.), se establecerá un wallpaper para la noche, caso contrario se establecerá otro para el día.
 
-> Debo aclarar que la otra función `setInterval` es para ejecutar la función cada cierto tiempo y cambiar el wallpaper dinámicamente, pero no funciona.
->
-> Cualquier aporte con un PR es bienvenida.
+Esta función se ejecutará cada 10 minutos para refrezcar el wallpaper de fondo.
 
 ## Terminal
 
 Para configurar la terminal (zsh), vamos a instalar [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH). Para el prompt instalamos [StarShip](https://starship.rs/guide/#%F0%9F%9A%80-installation) (revise la documentación) y nos aseguramos copiar el archivo `starship.toml` en `~/.config`.
 
 ```bash
-cp .config/starship.toml ~/.config
+cp configs/starship.toml ~/.config
 ```
 
 Volvemos a lanzar la terminal y ya debe estar listo.

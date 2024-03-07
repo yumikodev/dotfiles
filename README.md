@@ -73,9 +73,6 @@ cp -r configs/* ~/.config
 
 Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos el script de bash `~/.config/hypr/scripts/wallpaper.sh`, luego buscaremos el siguiente código:
 
-> [!NOTE]
-> Para detectar los cambios se utiliza Nodemon, por ende deberá instalar [nodemom](https://www.npmjs.com/package/nodemon) globalmente (y obviamente [Node.js](https://github.com/nvm-sh/nvm)).
-
 ```sh
 changeBg() {
     pkill swaybg

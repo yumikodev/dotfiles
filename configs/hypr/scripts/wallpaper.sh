@@ -1,8 +1,6 @@
 #!/bin/bash
 
 HOUR=$(date +%H)
-FILE_PATH=$0
-FILE_DIR=$(dirname "$(readlink -f "$0")")
 
 changeBg() {
     pkill swaybg

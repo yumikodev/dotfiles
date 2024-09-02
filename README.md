@@ -1,4 +1,4 @@
-# Nelly Dark theme
+# Yuki theme
 
 ![](https://raw.githubusercontent.com/Yumiko0828/dotfiles/main/screenshots/hyprland_nelly-dark.png)
 

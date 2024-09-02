@@ -6,22 +6,22 @@
 
 - [Tabla de contenido](#tabla-de-contenido)
 - [Instalación](#instalación)
-  - [Hyprland](#hyprland)
+  - [BSPWM](#bspwm)
   - [Dependencias](#dependencias)
-  - [Fuentes](#fuentes-tipografías)
-  - [Configuración](#configuración)
+- [Configuración](#configuración)
+- [Fuentes](#fuentes-tipografías)
 - [Terminal](#terminal)
 
 # Instalación
 
 Antes de empezar a instalar las dependencias, hay que tener en cuenta que esta guia esta hecha en base a una distro Arch.
 
-## Hyprland
+## Bspwm
 
-Primero, hay que instalar la versión estable de Hyprland.
+Primero, hay que instalar bspwm y sxhkd.
 
 ```bash
-sudo pacman -S hyprland
+sudo pacman -S bspwm sxhkd
 ```
 
 ## Dependencias
@@ -29,34 +29,13 @@ sudo pacman -S hyprland
 Las siguientes dependencias son para las capturas de pantalla, terminal y otros:
 
 ```bash
-sudo pacman -S wl-clipboard slurp grim zsh ranger neovim waybar inotify-tools alacritty
+sudo pacman -S amixer zsh ranger neovim alacritty dunst thunar rofi polybar brightnessctl
 ```
 
-Paquetes indispensables para un correcto funcionamiento:
+Paquetes en AUR:
 
 ```bash
-yay -S rofi dunst swaybg swaylock-fancy-git swayidle pamixer light brillo
-```
-
-## Fuentes (Tipografías)
-
-- [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/JetBrainsMono.zip)
-- [Iosevka Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/Iosevka.zip)
-- [Font Awesome](https://archlinux.org/packages/community/any/ttf-font-awesome/)
-  ```bash
-  yay -S ttf-font-awesome
-  ```
-
-Una vez descargadas las fuentes (comprimidas), descompimalas y coloquelas en `~/.fonts` o `~/.local/share/fonts`.
-
-> [!NOTE]
-> Si la carpeta no existe, creala con `mkdir <PATH>`.
-> Reemplace `<PATH>` por `~/.fonts` o `~/.local/share/fonts` (escoge uno).
-
-Luego ejecuta este comando para que su sistema reconozca las fuentes.
-
-```bash
-fc-cache -fv
+yay -S betterlockscreen
 ```
 
 ## Configuración
@@ -64,32 +43,45 @@ fc-cache -fv
 Ahora, hay que copiar los archivos de configuración
 
 ```bash
-git clone -b nelly-dark https://github.com/Yumiko0828/dotfiles.git
-cd dotfiles
-cp -r configs/* ~/.config
+git clone -b nelly-dark https://github.com/Yumiko0828/dotfiles.git ; cd dotfiles ; cp -r .config/* ~/.config; cp .xinitrc ~ ; echo "Listo!"
 ```
 
-### Wallpaper
+## Fuentes (Tipografías)
 
-Antes de terminar, hay que configurar el wallpaper (fondo de pantalla). Abrimos el script de bash `~/.config/hypr/scripts/wallpaper.py`, luego buscaremos las siguientes lineas de códig:
+Creamos el directorio de las fuentes y las copiamos.
 
-```py
-  if hour < 18:
-    Popen(["swaybg", "-o", "*", "-i", f"{path}/<PATH-TO-DAY-WALLPAPER>", "-m", "fill"])
-  else:
-    Popen(["swaybg", "-o", "*", "-i", f"{path}/<PATH-TO-NIGHT-WALLPAPER>", "-m", "fill"])
+```bash
+sudo mkdir /usr/local/share/fonts ; sudo cp fonts/* /usr/local/share/fonts
 ```
 
-De manera simple, si la hora es mayor a 18 (6 P.M.), se establecerá un wallpaper para la noche, caso contrario se establecerá otro para el día.
+Luego ejecuta este comando para que su sistema reconozca las fuentes.
 
-Esta función se ejecutará cada 10 minutos para refrezcar el wallpaper de fondo.
+```bash
+fc-cache -fv
+```
 
 ## Terminal
 
-Para configurar la terminal (zsh), vamos a instalar [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH). Para el prompt instalamos [StarShip](https://starship.rs/guide/#%F0%9F%9A%80-installation) (revise la documentación) y nos aseguramos copiar el archivo `starship.toml` en `~/.config`.
+Para configurar la terminal (zsh), vamos a instalar [ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH). Para el prompt instalamos [StarShip](https://starship.rs/guide/#%F0%9F%9A%80-installation) (revise la documentación).
+
+### Plugins:
+
+- autosuggesions plugin
+
+  ```bash
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+  ```
+
+- zsh-syntax-highlighting plugin
+
+  ```bash
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+  ```
+
+### ZSHRC
 
 ```bash
-cp configs/starship.toml ~/.config
+cp .zshrc ~ ; source ~/.zshrc
 ```
 
 Volvemos a lanzar la terminal y ya debe estar listo.

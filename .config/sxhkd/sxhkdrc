@@ -4,7 +4,11 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	alacritty --class 'term'
+
+# terminal emulator (floating)
+super + alt + Return
+  alacritty --class 'floating'
 
 # program launcher
 super + @space
@@ -23,12 +27,16 @@ Print
   flameshot gui
 
 # Manage brightness
-XF86MonBrightness{Up,Down}
-    brightnessctl s {+5,5-}
+alt + {KP_Right,KP_Left}
+	$HOME/.config/bspwm/scripts/brightness-control.sh {up,down}
 
 # Volume control
-XF86Audio{RaiseVolume,LowerVolume,Mute}
+alt + {KP_Up,KP_Down,KP_Begin}
 	$HOME/.config/bspwm/scripts/volume.sh {up,down,mute}
+
+# Media control
+alt + {F1,F2,F3,F4}
+	$HOME/.config/bspwm/scripts/media-control.sh {previous,next,play-pause,stop}
 
 #
 # bspwm hotkeys
@@ -69,6 +77,10 @@ super + ctrl + {m,x,y,z}
 #
 # focus/swap
 #
+
+# alternate split horizontal/vertical
+super + j
+  bspc node @parent -R 90
 
 # focus the next/previous node in the current desktop
 alt + {_,shift + }Tab

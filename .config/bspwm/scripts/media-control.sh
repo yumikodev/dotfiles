@@ -3,6 +3,11 @@
 notify_id=2595
 icon="media-playback-start-symbolic"
 
+if ! command -v playerctl >/dev/null 2>&1; then
+  dunstify -a "PLAYER" "❌ playerctl no está instalado" -r "$notify_id" -u critical -i "$icon"
+  exit 1
+fi
+
 get_metadata() {
   playerctl metadata --format "{{artist}} - {{title}}" 2>/dev/null
 }

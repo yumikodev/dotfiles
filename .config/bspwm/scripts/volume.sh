@@ -1,30 +1,35 @@
 #!/bin/sh
 
+get_volume() {
+  pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '\d+(?=%)' | head -1
+}
+
+is_muted() {
+  pactl get-sink-mute @DEFAULT_SINK@ | grep -q "yes"
+}
+
 down() {
-pamixer -d 2
-volume=$(pamixer --get-volume)
-[$volume -gt 0 ] && volume=`expr $volume`  
-dunstify -a "VOLUME" "Volumen al $volume%" -h int:value:"$volume" -r 2593 -u normal
-canberra-gtk-play -i audio-volume-change -d "changevolume"
+  pactl set-sink-volume @DEFAULT_SINK@ -2%
+  volume=$(get_volume)
+  dunstify -a "VOLUME" "Volumen al $volume%" -h int:value:"$volume" -r 2593 -u normal
+  canberra-gtk-play -i audio-volume-change -d "changevolume"
 }
 
 up() {
-pamixer -i 2
-volume=$(pamixer --get-volume)
-[ $volume -lt 100 ] && volume=`expr $volume`  
-dunstify -a "VOLUME" "Volumen al $volume%" -h int:value:"$volume" -r 2593 -u normal
-canberra-gtk-play -i audio-volume-change -d "changevolume"
+  pactl set-sink-volume @DEFAULT_SINK@ +2%
+  volume=$(get_volume)
+  dunstify -a "VOLUME" "Volumen al $volume%" -h int:value:"$volume" -r 2593 -u normal
+  canberra-gtk-play -i audio-volume-change -d "changevolume"
 }
 
 mute() {
-muted="$(pamixer --get-mute)"
-if $muted; then
-  pamixer -u
-  dunstify -a "VOLUME" "UNMUTED" -r 2593 -u normal
-else 
-  pamixer -m
-  dunstify -a "VOLUME" "MUTED" -r 2593 -u normal
-fi
+  if is_muted; then
+    pactl set-sink-mute @DEFAULT_SINK@ 0
+    dunstify -a "VOLUME" "UNMUTED" -r 2593 -u normal
+  else
+    pactl set-sink-mute @DEFAULT_SINK@ 1
+    dunstify -a "VOLUME" "MUTED" -r 2593 -u normal
+  fi
 }
 
 case "$1" in

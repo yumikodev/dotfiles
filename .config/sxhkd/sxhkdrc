@@ -4,15 +4,15 @@
 
 # terminal emulator
 super + Return
-	alacritty --class 'term'
+	alacritty
 
 # terminal emulator (floating)
 super + alt + Return
-  alacritty --class 'floating'
+	alacritty --class 'floating'
 
 # program launcher
 super + @space
-	$HOME/.config/polybar/scripts/launcher.sh
+	rofi -show drun -theme $HOME/.config/rofi/config.rasi
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -21,6 +21,10 @@ super + Escape
 # open file manager
 super + e
   thunar
+
+# Lock screen
+ctrl + alt + l
+	betterlockscreen -l
 
 # Take a screenshpt
 Print

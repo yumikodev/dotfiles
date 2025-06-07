@@ -1,6 +1,4 @@
-# Yuki theme
-
-![](https://raw.githubusercontent.com/Yumiko0828/dotfiles/main/screenshots/hyprland_nelly-dark.png)
+# Aoi theme
 
 ## Tabla de contenido
 
@@ -29,7 +27,7 @@ sudo pacman -S bspwm sxhkd
 Las siguientes dependencias son para las capturas de pantalla, terminal y otros:
 
 ```bash
-sudo pacman -S amixer zsh ranger neovim alacritty dunst thunar rofi polybar brightnessctl
+sudo pacman -S playerctl zsh ranger neovim alacritty dunst thunar rofi flameshot nitrogen polybar picom brightnessctl ttf-font-awesome
 ```
 
 Paquetes en AUR:
@@ -43,7 +41,7 @@ yay -S betterlockscreen
 Ahora, hay que copiar los archivos de configuración
 
 ```bash
-git clone -b nelly-dark https://github.com/Yumiko0828/dotfiles.git ; cd dotfiles ; cp -r .config/* ~/.config; cp .xinitrc ~ ; echo "Listo!"
+git clone -b aoi https://github.com/Yumiko0828/dotfiles.git ; cd dotfiles ; cp -r .config/* ~/.config; cp .xinitrc ~ ; echo "Listo!"
 ```
 
 ## Fuentes (Tipografías)
